@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@assemblyscript/loader@^0.18.16":
+"@assemblyscript/loader@^0.18.16", "@assemblyscript/loader@0.18.x":
   "integrity" "sha512-WjCcCtnKhmIXEj70hFaiWZIuAWcrAL86+r5UlARKNgT8ymgSfVxY8rMDUvD/xKbcz76Vh3cuo+JvLIdCAKoxEw=="
   "resolved" "https://registry.npmjs.org/@assemblyscript/loader/-/loader-0.18.16.tgz"
   "version" "0.18.16"
@@ -2462,6 +2462,14 @@
   "resolved" "https://registry.npmjs.org/arrify/-/arrify-2.0.1.tgz"
   "version" "2.0.1"
 
+"as-bind@^0.6.1":
+  "integrity" "sha512-90s9PreIi9PQW0gFrKQr5d97f6a3rpqdrJTEgB5jdDPgl0SoEfmz8nq4oSUdmdB7Zv3wp3KPsvpJDfCygduHyQ=="
+  "resolved" "https://registry.npmjs.org/as-bind/-/as-bind-0.6.1.tgz"
+  "version" "0.6.1"
+  dependencies:
+    "@assemblyscript/loader" "~0.18.7"
+    "assemblyscript" "~0.18.7"
+
 "asap@~2.0.6":
   "integrity" "sha1-5QNHYR1+aQlDIIu9r+vLwvuGbUY="
   "resolved" "https://registry.npmjs.org/asap/-/asap-2.0.6.tgz"
@@ -2484,7 +2492,7 @@
   dependencies:
     "safer-buffer" "~2.1.0"
 
-"assemblyscript@^0.18.16":
+"assemblyscript@^0.18.16", "assemblyscript@0.18.x":
   "integrity" "sha512-Udzui/xsWwGKV5n1ae9U8MnQJzdgdLKpuHKV/PlzRLe64cXrAEetbX+AHUNkG9jHm/YcVUZ3r4NeJHDH1T23XQ=="
   "resolved" "https://registry.npmjs.org/assemblyscript/-/assemblyscript-0.18.16.tgz"
   "version" "0.18.16"

@@ -1,4 +1,3 @@
-import { DIM } from "./mandelbrot";
 import gradient from "tinygradient";
 
 export const plotImage = (ctx, imageArray = []) => {
@@ -6,14 +5,13 @@ export const plotImage = (ctx, imageArray = []) => {
   ctx.fillStyle = "rgba(255,255,255,255)";
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   imageArray.forEach((pixel) => {
-    const { a = 255 } = pixel.color || {};
-    ctx.fillStyle = getColor(a);
+    ctx.fillStyle = getColor(pixel.intensity);
     ctx.fillRect(pixel.x, pixel.y, 1, 1);
   });
   ctx.fill();
 };
 
-export const plotBox = (ctx, { x, y }) => {
+export const plotBox = (ctx, { x, y }, DIM) => {
   ctx.strokeStyle = "#000000";
   ctx.strokeRect(x - DIM / 8, y - DIM / 8, DIM / 4, DIM / 4);
   ctx.fill();

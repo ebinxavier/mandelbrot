@@ -2,8 +2,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import "./App.css";
 import { plotImage, plotBox, getMousePosition } from "./plot";
-import { DIM, getImage } from "./mandelbrot";
+import { getImage } from "./mandelbrot";
 import { debounce } from "lodash";
+import { useWasm } from "./useWasm";
+
+const MAX_ITERATION = 30;
+const DIM = 300;
 
 function App() {
   const canvasRef = useRef(null);
@@ -17,10 +21,14 @@ function App() {
   });
   const [mouseCoordinates, setMouseCoordinates] = useState();
   const [timeTaken, setTimeTaken] = useState();
+  const [enableWASM, setEnableWASM] = useState(false);
+  const [ITR, setITR] = useState(MAX_ITERATION);
+
+  const wasm = useWasm();
 
   const draw = (ctx) => {
     plotImage(ctx, image2D);
-    if (mouseCoordinates) plotBox(ctx, mouseCoordinates);
+    if (mouseCoordinates) plotBox(ctx, mouseCoordinates, DIM);
   };
 
   const handleMouseMove = useCallback(
@@ -61,22 +69,48 @@ function App() {
   useEffect(() => {
     if (!clip) return;
     setLoading(true);
-    setTimeout(() => {
-      getImage(clip).then(({ image2D, delta }) => {
-        setImage2D(image2D);
-        setLoading(false);
-        setTimeTaken(delta);
+    if (enableWASM && wasm) {
+      const start = performance.now();
+      const image = wasm?.getImage(
+        clip.RE_START,
+        clip.RE_END,
+        clip.IM_START,
+        clip.IM_END,
+        ITR,
+        DIM
+      );
+      const image2D = image.map((pixel) => {
+        const [x, y, intensity] = pixel.split(",");
+        return { x: Number(x), y: Number(y), intensity: Number(intensity) };
       });
-    });
-  }, [clip]);
+      setImage2D(image2D);
+      setLoading(false);
+      setTimeTaken(((performance.now() - start) / 1000).toFixed(2));
+      console.log("Using WASM");
+      setITR(ITR + 5);
+    }
+    if (!enableWASM) {
+      setTimeout(() => {
+        getImage(clip, ITR, DIM).then(({ image2D, delta }) => {
+          setImage2D(image2D);
+          setLoading(false);
+          setTimeTaken(delta);
+          console.log("Using JS");
+        });
+        setITR(ITR + 5);
+      });
+    }
+  }, [clip, wasm]);
 
   return (
-    <div style={{ padding: "0 20px" }}>
-      <h1>Mandelbrot Fractal</h1>
+    <div style={{ padding: "0 20px", textAlign: "center" }}>
+      <h1>Mandelbrot Fractal </h1>
+      <p>Select area to zoom in</p>
+      <br />
       <div
         style={{
           padding: 10,
-          border: "1px solid black",
+          border: "1px solid #555555",
           display: "inline-block",
         }}
       >
@@ -90,14 +124,17 @@ function App() {
       </div>
       <div>
         {loading ? (
-          <span style={{ fontSize: 10 }}>Rendering...</span>
+          <span style={{ fontSize: 15 }}>Rendering...</span>
         ) : (
           timeTaken && (
-            <span style={{ fontSize: 10 }}>
+            <span style={{ fontSize: 15 }}>
               Last render time: {timeTaken} Sec
             </span>
           )
         )}
+        <br />
+        <br />
+        <button onClick={() => window.location.reload()}>RESET</button>
       </div>
     </div>
   );
