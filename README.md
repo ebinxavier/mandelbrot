@@ -1,6 +1,6 @@
 # Mandelbrot Fractal
 
-Checkout the [Demo](https://ebinxavier.github.io/mandelbrot)
+Checkout the [Demo](https://ebinxavier.github.io/mandelbrot/)
 
 ## Examples
 
