@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/mandelbrot/static/css/main.65daaa6a.chunk.css",
+    "main.js": "/mandelbrot/static/js/main.c12fdaf5.chunk.js",
+    "main.js.map": "/mandelbrot/static/js/main.c12fdaf5.chunk.js.map",
+    "runtime-main.js": "/mandelbrot/static/js/runtime-main.df229579.js",
+    "runtime-main.js.map": "/mandelbrot/static/js/runtime-main.df229579.js.map",
+    "static/js/2.375e9de8.chunk.js": "/mandelbrot/static/js/2.375e9de8.chunk.js",
+    "static/js/2.375e9de8.chunk.js.map": "/mandelbrot/static/js/2.375e9de8.chunk.js.map",
+    "static/js/3.8f0b08f3.chunk.js": "/mandelbrot/static/js/3.8f0b08f3.chunk.js",
+    "static/js/3.8f0b08f3.chunk.js.map": "/mandelbrot/static/js/3.8f0b08f3.chunk.js.map",
+    "index.html": "/mandelbrot/index.html",
+    "static/css/main.65daaa6a.chunk.css.map": "/mandelbrot/static/css/main.65daaa6a.chunk.css.map",
+    "static/js/2.375e9de8.chunk.js.LICENSE.txt": "/mandelbrot/static/js/2.375e9de8.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.df229579.js",
+    "static/js/2.375e9de8.chunk.js",
+    "static/css/main.65daaa6a.chunk.css",
+    "static/js/main.c12fdaf5.chunk.js"
+  ]
+}
