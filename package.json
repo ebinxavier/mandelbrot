@@ -1,4 +1,5 @@
 {
+  "homepage": "https://ebinxavier.github.io/mandelbrot",
   "name": "mandelbrot",
   "version": "0.1.0",
   "private": true,
@@ -20,7 +21,9 @@
     "start": "react-scripts start",
     "build:react": "react-scripts build",
     "build:wasm": "asc ./node_modules/as-bind/lib/assembly/as-bind.ts assembly/index.ts -b public/fractal.wasm --optimize --exportRuntime",
-    "build": "npm run build:wasm && npm run build:react"
+    "build": "npm run build:wasm && npm run build:react",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -41,6 +44,7 @@
     ]
   },
   "devDependencies": {
-    "assemblyscript": "^0.18.16"
+    "assemblyscript": "^0.18.16",
+    "gh-pages": "^3.1.0"
   }
 }
